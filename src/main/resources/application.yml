@@ -1,0 +1,14 @@
+spring:
+  # Spring JDBC configuration
+  datasource:
+    url:      jdbc:mysql://localhost:3306/test-reactive
+    username: root
+    password:
+
+  # Spring Data JPA configuration
+  jpa:
+    hibernate:
+      # To be updated in real production usage!
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
