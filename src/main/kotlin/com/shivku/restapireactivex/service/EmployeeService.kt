@@ -21,7 +21,7 @@ class EmployeeService(
             }
     }
 
-    fun createEmployeeNon(employeeToBeCreated: Employee): Employee {
+    fun createEmployeeNonReactive(employeeToBeCreated: Employee): Employee {
         employeeRepository.save(employeeToBeCreated)
         firestoreGateway.createEmployee(employeeToBeCreated).blockingSubscribe()
         return employeeToBeCreated

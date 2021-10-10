@@ -17,9 +17,10 @@ class EmployeeController(private val employeeService: EmployeeService) {
         return employeeService.createEmployee(employee)
             .subscribeOn(Schedulers.io())
     }
-    @PostMapping("/non")
+
+    @PostMapping("/non-reactive")
     public fun createEmployeeNonReactive(@RequestBody employee: Employee): Employee {
-        return employeeService.createEmployeeNon(employee)
+        return employeeService.createEmployeeNonReactive(employee)
     }
 }
 // TODO: write to firestore
