@@ -7,6 +7,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.cloud.FirestoreClient
 import com.google.firebase.messaging.FirebaseMessaging
+import java.io.FileInputStream
 import kotlin.random.Random
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
@@ -25,7 +26,7 @@ data class SpringApplicationConfiguration(
 class MessagingServiceConfiguration {
     @Bean("firebaseapp")
     fun firebaseInstance(springApplicationConfiguration: SpringApplicationConfiguration): FirebaseApp {
-        val googleCredentials = GoogleCredentials.getApplicationDefault()
+        val googleCredentials = GoogleCredentials.fromStream(FileInputStream("./src/main/resources/firebase-credentials.json"))
             .createScoped(
                 listOf(
                     "https://www.googleapis.com/auth/datastore",

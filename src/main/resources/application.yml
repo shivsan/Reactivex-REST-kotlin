@@ -11,6 +11,6 @@ spring:
   jpa:
     hibernate:
       # To be updated in real production usage!
-      ddl-auto: create-drop
+      ddl-auto: create
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true

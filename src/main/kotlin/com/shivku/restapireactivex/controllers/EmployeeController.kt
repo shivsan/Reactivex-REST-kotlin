@@ -4,6 +4,10 @@ import com.shivku.restapireactivex.models.Employee
 import com.shivku.restapireactivex.service.EmployeeService
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.*
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -22,7 +26,17 @@ class EmployeeController(private val employeeService: EmployeeService) {
     public fun createEmployeeNonReactive(@RequestBody employee: Employee): Employee {
         return employeeService.createEmployeeNonReactive(employee)
     }
+
+    @GetMapping("/{id}")
+    public fun get(@PathVariable("id") id: String): Single<ResponseEntity<Employee>> {
+        return employeeService.getEmployee(id)
+            .map { result -> getResponse(result) }
+    }
+
+    private fun getResponse(result: Optional<Employee>) = result
+        .map { r -> ResponseEntity.ok(r) }
+        .orElse(ResponseEntity.notFound().build())
 }
-// TODO: write to firestore
+
 // TODO: testing - unit tests and integration tests
 // TODO: external calls to other APIs
