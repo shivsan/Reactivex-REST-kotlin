@@ -4,6 +4,8 @@ spring:
     url:      jdbc:mysql://localhost:3306/test-reactive
     username: root
     password:
+  application:
+    name: Reactivex-proj
 
   # Spring Data JPA configuration
   jpa:
