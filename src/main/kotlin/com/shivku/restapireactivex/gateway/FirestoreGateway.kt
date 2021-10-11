@@ -1,5 +1,6 @@
 package com.shivku.restapireactivex.gateway
 
+import com.google.cloud.Timestamp
 import com.google.cloud.firestore.Firestore
 import com.shivku.restapireactivex.models.Employee
 import io.reactivex.rxjava3.core.Observable
@@ -10,14 +11,14 @@ import org.springframework.stereotype.Component
 class FirestoreGateway(private val firestore: Firestore) {
     private val EMPLOYEES_COLLECTION_NAME = "employees"
 
-    public fun createEmployee(employee: Employee): Single<Unit> {
+    public fun createEmployee(employee: Employee): Single<Timestamp> {
         return Observable.fromFuture(
             firestore
                 .collection(EMPLOYEES_COLLECTION_NAME)
                 .document(employee.id)
                 .set(employee)
         )
-            .map { result -> println(result) }
+            .map { result -> result.updateTime }
             .singleOrError()// TODO: log instead of printing
     }
 }
