@@ -30,7 +30,7 @@ class EmployeeController(private val employeeService: EmployeeService) {
     @GetMapping("/{id}")
     public fun get(@PathVariable("id") id: String): Single<ResponseEntity<Employee>> {
         return employeeService.getEmployee(id)
-            .map { result -> getResponse(result) }
+            .map { result -> getResponse(result) }.subscribeOn(Schedulers.io())
     }
 
     private fun getResponse(result: Optional<Employee>) = result
