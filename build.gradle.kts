@@ -27,7 +27,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.reactivex.rxjava3:rxjava:3.1.1")
     implementation("mysql:mysql-connector-java:8.0.26")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
+    testImplementation("org.mockito:mockito-inline:3.3.3")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.4.10")
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation(enforcedPlatform("org.junit:junit-bom:5.7.0"))
 }
 
 tasks.withType<KotlinCompile> {
